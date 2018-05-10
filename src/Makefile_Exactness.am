@@ -49,3 +49,14 @@ bin_exactness_exactness_record_SOURCES = bin/exactness/recorder.c lib/exactness/
 bin_exactness_exactness_record_CPPFLAGS = @EXACTNESS_CFLAGS@ @ELEMENTARY_CFLAGS@
 bin_exactness_exactness_record_LDADD = @USE_EXACTNESS_LIBS@
 bin_exactness_exactness_record_DEPENDENCIES = @USE_EXACTNESS_INTERNAL_LIBS@
+
+### Edje
+
+sharedir = $(datadir)/exactness
+share_DATA = exactness_play.edj
+
+CLEANFILES += $(share_DATA)
+
+exactness_play.edj: bin/exactness/player_entry.edc bin/edje/edje_cc${EXEEXT}
+	$(AM_V_EDJ) \
+	$(EDJE_CC) $(EDJE_CC_FLAGS) -sd $(top_srcdir)/data/elementary/themes/snd -id $(top_srcdir)/data/elementary/themes/img $< $@
