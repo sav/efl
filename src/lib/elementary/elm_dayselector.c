@@ -98,20 +98,20 @@ _update_items(Evas_Object *obj)
    rtl = efl_ui_mirrored_get(obj);
    EINA_LIST_FOREACH(sd->items, l, it)
      {
-        elm_object_signal_emit(VIEW(it), it->day_style, ""); // XXX: compat
-        elm_object_signal_emit(VIEW(it), it->day_style, "elm");
+        efl_layout_signal_emit(VIEW(it), it->day_style, ""); // XXX: compat
+        efl_layout_signal_emit(VIEW(it), it->day_style, "elm");
         if (it->day == sd->week_start)
           {
-             if (rtl) elm_object_signal_emit(VIEW(it), ITEM_POS_RIGHT, "elm");
-             else elm_object_signal_emit(VIEW(it), ITEM_POS_LEFT, "elm");
+             if (rtl) efl_layout_signal_emit(VIEW(it), ITEM_POS_RIGHT, "elm");
+             else efl_layout_signal_emit(VIEW(it), ITEM_POS_LEFT, "elm");
           }
         else if (it->day == last_day)
           {
-             if (rtl) elm_object_signal_emit(VIEW(it), ITEM_POS_LEFT, "elm");
-             else elm_object_signal_emit(VIEW(it), ITEM_POS_RIGHT, "elm");
+             if (rtl) efl_layout_signal_emit(VIEW(it), ITEM_POS_LEFT, "elm");
+             else efl_layout_signal_emit(VIEW(it), ITEM_POS_RIGHT, "elm");
           }
         else
-          elm_object_signal_emit(VIEW(it), ITEM_POS_MIDDLE, "elm");
+          efl_layout_signal_emit(VIEW(it), ITEM_POS_MIDDLE, "elm");
      }
 }
 
